@@ -11,3 +11,4 @@ openai-whisper
 youtube-transcript-api
 faiss-cpu
 sentence-transformers
+rank_bm25
