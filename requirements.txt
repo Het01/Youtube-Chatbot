@@ -10,3 +10,4 @@ pytube
 openai-whisper
 youtube-transcript-api
 faiss-cpu
+sentence-transformers
