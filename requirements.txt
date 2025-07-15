@@ -11,3 +11,4 @@ whisper
 pydub
 youtube-transcript-api
 faiss-cpu
+pyaudioop
