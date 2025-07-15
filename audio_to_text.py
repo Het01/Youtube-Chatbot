@@ -8,7 +8,7 @@ from pydub import AudioSegment  # Required for format conversion
 def transcribe_with_whisper(url):
     try:
         # Set up paths
-        output_dir = r"D:\M.Tech\Projects\YouTube-AI-Assistant\Youtube"
+        output_dir = os.path.join(os.getcwd(), "Youtube")
         os.makedirs(output_dir, exist_ok=True)
         audio_filename = "audio.mp4"
         audio_path = os.path.join(output_dir, audio_filename)
@@ -51,7 +51,10 @@ def transcribe_video_to_text(url):
         video_id = url.split("=")[-1]
         srt1 = YouTubeTranscriptApi.get_transcript(video_id)
         transcript_text = " ".join([i['text'] for i in srt1])
-        output_file_path = r'D:\M.Tech\Projects\YouTube-AI-Assistant\Youtube\video.txt'
+        output_dir = os.path.join(os.getcwd(), "Youtube")
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir)
+        output_file_path = os.path.join(output_dir, "video.txt")
         with open(output_file_path, 'w', encoding='utf-8') as output_file:
             output_file.write(transcript_text)
         return transcript_text

@@ -78,9 +78,18 @@ def get_vectorstore(chunks):
 
 # Function to create an advanced conversation chain using EnsembleRetriever
 def get_conversation_chain_advanced(vectorstore):
-    loader = DirectoryLoader(r"D:\M.Tech\Projects\YouTube-AI-Assistant\Youtube",
-                             glob='*.txt',
-                             loader_cls=TextLoader)
+    # Use a relative or dynamic path
+    data_dir = os.path.join(os.getcwd(), "Youtube")
+
+    # Ensure the directory exists
+    if not os.path.exists(data_dir):
+        os.makedirs(data_dir)
+
+    loader = DirectoryLoader(
+        data_dir,
+        glob="*.txt",
+        loader_cls=TextLoader
+    )
 
     documents = loader.load()
     memory = ConversationSummaryBufferMemory(
@@ -180,7 +189,7 @@ with col2:
 
 # Resetting form and session state variables if reset button is clicked
 if reset_button:
-    directory = r'D:\M.Tech\Projects\YouTube-AI-Assistant\Youtube'
+    directory = os.path.join(os.getcwd(), "Youtube")
     for filename in os.listdir(directory):
         file_path = os.path.join(directory, filename)
         if os.path.isfile(file_path):
@@ -214,7 +223,7 @@ if url != "":
 
                 print("\n📝 Transcript sample (first 500 chars):\n", st.session_state.transcribed_text[:500])
                 print("📏 Transcript length:", len(st.session_state.transcribed_text))
-                st.session_state.documents, st.session_state.chunks = transcribed_text_to_chunks(r'D:\M.Tech\Projects\YouTube-AI-Assistant\Youtube')
+                st.session_state.documents, st.session_state.chunks = transcribed_text_to_chunks(os.path.join(os.getcwd(), "Youtube"))
                 print(st.session_state.chunks)
                 st.session_state.vectorstore = get_vectorstore(st.session_state.chunks)
                 print(st.session_state.vectorstore)
