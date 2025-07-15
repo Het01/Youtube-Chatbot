@@ -1,0 +1,13 @@
+streamlit
+langchain
+langchain-community
+langchain-huggingface
+langchain-core
+huggingface_hub
+python-dotenv
+yt-dlp
+pytube
+whisper
+pydub
+youtube-transcript-api
+faiss-cpu

@@ -1,38 +1,23 @@
 import streamlit as st
 import os
-from langchain_community.llms import HuggingFaceHub
-from langchain_huggingface import HuggingFaceEndpoint
 import time
 from audio_to_text import transcribe_video_to_text
 from langchain_community.vectorstores import FAISS
 from text_to_chunks import transcribed_text_to_chunks
-from langchain.vectorstores import faiss
 from langchain_huggingface import HuggingFaceEmbeddings
-from langchain.chains import RetrievalQA
-from pytube import YouTube
 from langchain.prompts import PromptTemplate
-from langchain.chains.llm import LLMChain
-from langchain.chains.combine_documents.stuff import StuffDocumentsChain
-from langchain_community.llms import AI21
-import pytube
 import yt_dlp
 from langchain.chains import ConversationalRetrievalChain
-from langchain.memory import ConversationBufferMemory, ConversationSummaryBufferMemory
+from langchain.memory import ConversationSummaryBufferMemory
 from langchain_community.retrievers import BM25Retriever
 from langchain.retrievers.ensemble import EnsembleRetriever
 from langchain_community.document_loaders import TextLoader
 from langchain_community.document_loaders import DirectoryLoader
 from langchain.chains.combine_documents import create_stuff_documents_chain
-import nltk
-from nltk.tokenize import sent_tokenize
-nltk.download('punkt')
-
-
 from langchain_core.language_models.llms import LLM
-
 from huggingface_hub import InferenceClient
-
 from dotenv import load_dotenv
+
 load_dotenv()
 HF_TOKEN = os.getenv("HF_TOKEN")
 
