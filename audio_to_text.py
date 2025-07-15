@@ -3,7 +3,7 @@ import os
 import whisper
 from youtube_transcript_api import YouTubeTranscriptApi
 import streamlit as st
-from pydub import AudioSegment  # Required for format conversion
+# from pydub import AudioSegment  # Required for format conversion
 
 def transcribe_with_whisper(url):
     try:
